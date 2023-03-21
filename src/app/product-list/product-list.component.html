@@ -1,0 +1,3 @@
+<div *ngFor="let product of products" class="product-container">
+    <app-product-item [product]="product" (click)="goToProduct(product)" class="product-index"></app-product-item>
+</div>

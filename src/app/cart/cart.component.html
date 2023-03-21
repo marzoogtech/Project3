@@ -1,0 +1,30 @@
+<div class="cart-container">
+
+    <div class="cart-item-details">
+        <div *ngFor="let product of cartProducts" class="cart-item-details">
+            <img [src]="product.url">
+            <h4>{{ product.name }}</h4>
+            <p> ${{ product.price }}</p>
+            <label for="qty">Amount: </label>
+            <input [(ngModel)]="product.qty" type="number" id="qty" name="qty" min="1" class="number-input" [id]="product.id" [value]="product.qty" (ngModelChange)="qtyHander($event, product.id)">
+            <button class="delete-btn" (click)="deleteProduct(product)"> Delete </button>
+        </div>
+        <h3>Total: {{ total }}</h3>
+    </div>
+    
+    <div [formGroup]="checkOutForm">
+        <form class="buyer-details">
+            <label for="fullname"> Full Name: </label>
+            <input required type="text" minlength="3" name="fullName" [formControl]="fullName">
+            <label for="address"> Address: </label>
+            <input required type="text" minlength="6" name="address" [formControl]="address">
+            <label for="creditNumber"> Credit Card Number: </label>
+            <input required type="text" inputmode="numeric" pattern="[0-9]{16}" minlength="16" maxlength="16" name="creditNubmer" [formControl]="creditNumber">
+            <button (click)="checkOut()" class="submit-btn">
+                Submit
+            </button>
+        </form>
+        
+    </div>
+    
+</div>
